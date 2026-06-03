@@ -62,7 +62,7 @@ export async function getManufacturerId(manufacturerName) {
 export async function insertItem(item){
 
     const { data, error } = await supabaseClient
-        .from("items")
+        .from("stock_items")
         .insert([{
             gauge: item.gauge,
             width: item.width,
@@ -86,7 +86,7 @@ export async function insertItem(item){
 // Function to get the accounting ID for the item we just inserted
 export async function getAccountingId(itemNumber) {
     const { data, error } = await supabaseClient
-        .from("items")
+        .from("stock_items")
         .select("accounting_id")
         .eq("item_sku", itemNumber)
         .single();
