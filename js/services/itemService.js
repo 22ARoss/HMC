@@ -1,5 +1,27 @@
 import supabaseClient from "./supabaseClient.js";
 
+async function getCompanyId(){
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if (userError || !user) {
+        console.error("Error fetching user:", userError);
+        return null;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("company_id")
+        .eq("id", user.id)
+        .single();
+
+    if (error) {
+        console.error("Error fetching company ID:", error);
+        return null;
+    }
+
+    return data?.company_id ?? null;
+}
+
+
 // Function to grab all values from the form and build the item bundle + create part number
 async function generateItem() {
     const manufacturer = document.getElementById("manufacturer").value.toUpperCase();
@@ -22,7 +44,8 @@ async function generateItem() {
         "layout": layout,
         "manufacturer": manufacturer,
         "itemNumber": itemNumber,
-        "manufacturer_id": null
+        "manufacturer_id": null,
+        "company_id": null
     };
 
     return item;
@@ -71,11 +94,16 @@ export async function insertItem(item){
             handing: item.handing,
             layout: item.layout,
             manufacturer_id: item.manufacturer_id,
-            item_sku: item.itemNumber
+            item_sku: item.itemNumber,
+            company_id: item.company_id
         }])
         .select()
 
     if (error) {
+        if (error.code === '23505') {
+            // Item already exists for this company — not a real failure
+            return { data: null, error, duplicate: true };
+        }
         console.error("Error inserting item:", error);
         return { data: null, error };
     }
@@ -84,10 +112,11 @@ export async function insertItem(item){
 }
 
 // Function to get the accounting ID for the item we just inserted
-export async function getAccountingId(itemNumber) {
+export async function getAccountingId(itemNumber, companyId) {
     const { data, error } = await supabaseClient
         .from("stock_items")
         .select("accounting_id")
+        .eq("company_id", companyId)
         .eq("item_sku", itemNumber)
         .single();
 
@@ -108,7 +137,15 @@ function displayAccountingId(itemNumber, accountingId) {
 }
 
 export async function processItem(){
+    const companyId = await getCompanyId();
+    if (!companyId) {
+        console.error("No company_id available; cannot create item.");
+        return;
+    }
+
     const item = await generateItem();
+    item.company_id = companyId;
+
     const manufacturerId = await getManufacturerId(item.manufacturer);
     item.manufacturer_id = manufacturerId;
 
@@ -118,7 +155,7 @@ export async function processItem(){
     if (data){
         accountingID = data[0]?.accounting_id;
     } else {
-        const existing = await getAccountingId(item.itemNumber);
+        const existing = await getAccountingId(item.itemNumber, item.company_id);
         if (existing.data) {
             accountingID = existing.data;
         }
