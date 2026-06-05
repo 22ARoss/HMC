@@ -9,149 +9,329 @@
         <script type="module">
             import { getSession } from './js/services/authService.js';
             const session = await getSession();
-            if (!session) window.location.href = 'index.html';
+            if (!session) { window.location.href = 'index.html'; }
+            else {
+                const email = session.user?.email || '';
+                const initials = email.substring(0, 2).toUpperCase();
+                document.getElementById('nav-initials').textContent = initials;
+                document.getElementById('nav-email').textContent = email;
+            }
         </script>
     </head>
-    <body>
-        <!-- Dashboard content goes here -->
-        <header>
-            <h1>HMC Inventory Dashboard</h1>
-            <button id="logout-button">Logout</button>
-        </header>
+    <body class="dashboard-body">
 
-        <!-- Configurator section -->
-        <section class="configurator" id="configurator">
-            <h1>HM Configurator</h1>
-            <div class="configurator-content">
-                <label for="manufacturer">Select Manufacturer:</label>
-                <select id="manufacturer" name="manufacturer">
-                    <!-- Options will be populated dynamically -->
-                    <!-- Ex. Data-->
-                    <option value="CURRIES">Curries</option>
-                    <option value="STEELCRAFT">Steelcraft</option>
-                    <option value="DAYBAR">Daybar</option>
-                    <option value="VISION">Vision</option>
-                    <option value="DKS">DKS</option>
-                </select>
-                <label for="gauge">Select Gauge:</label>
-                <select id="gauge" name="gauge">
-                    <!-- Options will be populated dynamically -->
-                    <!-- Ex. Data-->
-                    <option value="14">14</option>
-                    <option value="16">16</option>
-                    <option value="18">18</option>
-                </select>
-                <label for="width">Select Width(in):</label>
-                <select id="width" name="width">
-                    <!-- Options will be populated dynamically -->
-                    <!-- Ex. Data-->
-                    <option value="30">30</option>
-                    <option value="34">34</option>
-                    <option value="36">36</option>
-                    <option value="40">40</option>
-                    <option value="60">60</option>
-                </select>
-                <label for="height">Select Height(in):</label>
-                <select id="height" name="height">
-                    <!-- Options will be populated dynamically -->
-                    <!-- Ex. Data-->
-                    <option value="68">68</option>
-                    <option value="70">70</option>
-                    <option value="72">72</option>
-                    <option value="76">76</option>
-                    <option value="80">80</option>
-                </select>
-                <label for="jamb_depth">Select Jamb Depth(in):</label>
-                <select id="jamb_depth" name="jamb_depth">
-                    <!-- Options will be populated dynamically -->
-                    <!-- Ex. Data-->
-                    <option value="475">4-3/4</option>
-                    <option value="487">4-7/8</option>
-                    <option value="500">5</option>
-                    <option value="512">5-1/8</option>
-                    <option value="525">5-1/4</option>
-                    <option value="537">5-3/8</option>
-                    <option value="550">5-1/2</option>
-                    <option value="567">5-5/8</option>
-                    <option value="575">5-3/4</option>
-                    <option value="587">5-7/8</option>
-                    <option value="600">6</option>
-                    <option value="612">6-1/8</option>
-                    <option value="625">6-1/4</option>
-                    <option value="637">6-3/8</option>
-                    <option value="650">6-1/2</option>
-                    <option value="667">6-5/8</option>
-                    <option value="675">6-3/4</option>
-                    <option value="687">6-7/8</option>
-                    <option value="700">7</option>
-                    <option value="712">7-1/8</option>
-                    <option value="725">7-1/4</option>
-                    <option value="737">7-3/8</option>
-                    <option value="750">7-1/2</option>
-                    <option value="767">7-5/8</option>
-                    <option value="775">7-3/4</option>
-                    <option value="787">7-7/8</option>
-                    <option value="800">8</option>
-                    <option value="812">8-1/8</option>
-                    <option value="825">8-1/4</option>
-                    <option value="837">8-3/8</option>
-                    <option value="850">8-1/2</option>
-                    <option value="867">8-5/8</option>
-                    <option value="875">8-3/4</option> 
-                    <option value="887">8-7/8</option>
-                    <option value="900">9</option>
-                    <option value="912">9-1/8</option>
-                    <option value="925">9-1/4</option>
-                    <option value="937">9-3/8</option>
-                    <option value="950">9-1/2</option>
-                    <option value="967">9-5/8</option>
-                    <option value="975">9-3/4</option>
-                    <option value="987">9-7/8</option>
-                    <option value="1000">10</option>
-                    <option value="1012">10-1/8</option>
-                    <option value="1025">10-1/4</option>
-                    <option value="1037">10-3/8</option>
-                    <option value="1050">10-1/2</option>
-                </select>
-                <label for="handing">Select Handing:</label>
-                <select id="handing" name="handing">
-                    <!-- Options will be populated dynamically -->
-                    <!-- Ex. Data-->
-                    <option value="RH">RH</option>
-                    <option value="LH">LH</option>
-                    <option value="RHR">RHR</option>
-                    <option value="LHR">LHR</option>
-                </select>
-                <label for="layout">Select Layout:</label>
-                <select id="layout" name="layout">
-                    <!-- Options will be populated dynamically -->
-                    <!-- Ex. Data-->
-                    <option value="LAUSD">LAUSD</option>
-                    <option value="STD">STD</option>
-                </select>
+        <!-- Nav -->
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <div class="nav-logo">H</div>
+                <span class="nav-brand-name">HMC</span>
             </div>
-            <div class="configurator-output">
-                <button id="generateItemButton">Generate Item</button>
-                <div>
-                    <div id="itemNumber">
-                        <label for="itemNumber">Generated Item Number:</label>
-                        <span id="itemNumberConfig"></span>
+            <div class="nav-links">
+                <a href="#" class="nav-link nav-link--active">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    Configurator
+                </a>
+                <!--
+                <a href="#" class="nav-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    Inventory
+                </a>
+                <a href="#" class="nav-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Profile
+                </a>
+                -->
+            </div>
+            <div class="nav-actions">
+                <div class="nav-user-group">
+                    <div class="nav-avatar" id="nav-initials">--</div>
+                    <div class="nav-user-info">
+                        <span class="nav-user-email" id="nav-email">Loading...</span>
+                        <span class="nav-user-role">Employee</span>
                     </div>
-                    <div id="accounting_ID">
-                        <label for="accounting_ID">Generated Accounting ID:</label>
-                        <span id="accountingId"></span>
-                    </div>
-                    <div id="manufacturer_output">
-                        <label for="manufacturer_output">Generated Manufacturer:</label>
-                        <span id="manu_output"></span>
-                    </div>
-                    <div id="description_output">
-                        <label for="description_output">Generated Description:</label>
-                        <span id="desc_output"></span>
-                    </div>
+                    <button id="logout-button" class="nav-logout" title="Sign out">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    </button>
                 </div>
             </div>
-        </section>
+        </nav>
+
+        <!-- Sub-header -->
+        <div class="page-subheader">
+            <div class="breadcrumb">
+                <span class="breadcrumb-section">Configurator</span>
+                <span class="breadcrumb-sep">|</span>
+                <span class="breadcrumb-path">HMC / <span class="breadcrumb-current">New part</span></span>
+            </div>
+            <button class="subheader-bell" aria-label="Notifications">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </button>
+        </div>
+
+        <!-- Main wrapper -->
+        <div class="config-wrapper">
+            <div class="config-title-row">
+                <div>
+                    <span class="config-eyebrow">NEW CONFIGURATION</span>
+                    <h1 class="config-heading">Part Number Configurator</h1>
+                    <p class="config-desc">Select each attribute to assemble a valid HMC part number. An accounting ID is reserved automatically and committed when you generate the part.</p>
+                </div>
+                <button class="reset-btn" id="resetButton">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+                    Reset
+                </button>
+            </div>
+            <!-- Columns layout -->
+            <div class="config-layout">
+                <!-- Left: main content -->
+                <main class="config-main">
+
+                <!-- Attributes card -->
+                <div class="attr-card">
+                    <div class="attr-card-header">
+                        <div class="attr-card-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                        </div>
+                        <div>
+                            <h2>Stock Attributes</h2>
+                            <p>Choose each value to build the part number</p>
+                        </div>
+                    </div>
+                    <div class="attr-grid">
+                        <div class="attr-field">
+                            <label for="manufacturer">Manufacturer <span>· brand</span></label>
+                            <select id="manufacturer" name="manufacturer">
+                                <option value="">Select manufacturer...</option>
+                                <option value="CURRIES" data-description="Commercial steel doors & frames">Curries</option>
+                                <option value="STEELCRAFT" data-description="Hollow metal door manufacturer">Steelcraft</option>
+                                <option value="DAYBAR" data-description="Steel door fabricator">Daybar</option>
+                                <option value="VISION" data-description="Architectural door systems">Vision</option>
+                                <option value="DKS" data-description="Door & hardware specialist">DKS</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="gauge">Gauge <span>· steel thickness</span></label>
+                            <select id="gauge" name="gauge">
+                                <option value="">Select gauge...</option>
+                                <option value="14" data-description="Heavy commercial grade">14</option>
+                                <option value="16" data-description="Standard commercial">16</option>
+                                <option value="18" data-description="Light commercial">18</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="width">Width <span>· inches</span></label>
+                            <select id="width" name="width">
+                                <option value="">Select width...</option>
+                                <option value="30" data-description="2'-6&quot; opening">30</option>
+                                <option value="34" data-description="2'-10&quot; opening">34</option>
+                                <option value="36" data-description="3'-0&quot; standard">36</option>
+                                <option value="40" data-description="3'-4&quot; opening">40</option>
+                                <option value="60" data-description="5'-0&quot; double">60</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="height">Height <span>· inches</span></label>
+                            <select id="height" name="height">
+                                <option value="">Select height...</option>
+                                <option value="68" data-description="5'-8&quot; opening">68</option>
+                                <option value="70" data-description="5'-10&quot; opening">70</option>
+                                <option value="72" data-description="6'-0&quot; standard">72</option>
+                                <option value="76" data-description="6'-4&quot; opening">76</option>
+                                <option value="80" data-description="6'-8&quot; common">80</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="jamb_depth">Jamb Depth <span>· inches</span></label>
+                            <select id="jamb_depth" name="jamb_depth">
+                                <option value="">Select jamb depth...</option>
+                                <option value="475">4-3/4</option>
+                                <option value="487">4-7/8</option>
+                                <option value="500">5</option>
+                                <option value="512">5-1/8</option>
+                                <option value="525">5-1/4</option>
+                                <option value="537">5-3/8</option>
+                                <option value="550">5-1/2</option>
+                                <option value="567">5-5/8</option>
+                                <option value="575">5-3/4</option>
+                                <option value="587">5-7/8</option>
+                                <option value="600">6</option>
+                                <option value="612">6-1/8</option>
+                                <option value="625">6-1/4</option>
+                                <option value="637">6-3/8</option>
+                                <option value="650">6-1/2</option>
+                                <option value="667">6-5/8</option>
+                                <option value="675">6-3/4</option>
+                                <option value="687">6-7/8</option>
+                                <option value="700">7</option>
+                                <option value="712">7-1/8</option>
+                                <option value="725">7-1/4</option>
+                                <option value="737">7-3/8</option>
+                                <option value="750">7-1/2</option>
+                                <option value="767">7-5/8</option>
+                                <option value="775">7-3/4</option>
+                                <option value="787">7-7/8</option>
+                                <option value="800">8</option>
+                                <option value="812">8-1/8</option>
+                                <option value="825">8-1/4</option>
+                                <option value="837">8-3/8</option>
+                                <option value="850">8-1/2</option>
+                                <option value="867">8-5/8</option>
+                                <option value="875">8-3/4</option>
+                                <option value="887">8-7/8</option>
+                                <option value="900">9</option>
+                                <option value="912">9-1/8</option>
+                                <option value="925">9-1/4</option>
+                                <option value="937">9-3/8</option>
+                                <option value="950">9-1/2</option>
+                                <option value="967">9-5/8</option>
+                                <option value="975">9-3/4</option>
+                                <option value="987">9-7/8</option>
+                                <option value="1000">10</option>
+                                <option value="1012">10-1/8</option>
+                                <option value="1025">10-1/4</option>
+                                <option value="1037">10-3/8</option>
+                                <option value="1050">10-1/2</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="handing">Handing <span>· door swing</span></label>
+                            <select id="handing" name="handing">
+                                <option value="">Select handing...</option>
+                                <option value="RH" data-description="Right hand, inswing">RH</option>
+                                <option value="LH" data-description="Left hand, inswing">LH</option>
+                                <option value="RHR" data-description="Right hand reverse, outswing">RHR</option>
+                                <option value="LHR" data-description="Left hand reverse, outswing">LHR</option>
+                            </select>
+                        </div>
+                        <div class="attr-field attr-field--full">
+                            <label for="layout">Layout <span>· configuration</span></label>
+                            <select id="layout" name="layout">
+                                <option value="">Select layout...</option>
+                                <option value="LAUSD" data-description="Los Angeles school district spec">LAUSD</option>
+                                <option value="STD" data-description="Standard configuration">STD</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right: sidebar -->
+            <aside class="config-sidebar">
+                <!-- Summary + generate -->
+                <div class="summary-card">
+                    <div class="summary-header">SUMMARY</div>
+                    <div class="summary-list">
+                        <div class="summary-row">
+                            <span>Manufacturer</span>
+                            <span class="summary-val" id="manu_output">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Gauge</span>
+                            <span class="summary-val" id="sum_gauge">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Width</span>
+                            <span class="summary-val" id="sum_width">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Height</span>
+                            <span class="summary-val" id="sum_height">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Jamb Depth</span>
+                            <span class="summary-val" id="sum_jamb">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Handing</span>
+                            <span class="summary-val" id="sum_handing">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Layout</span>
+                            <span class="summary-val" id="sum_layout">—</span>
+                        </div>
+                        <div class="summary-row summary-row--sku">
+                            <span>Item SKU</span>
+                            <span class="summary-val summary-val--sku" id="itemNumberConfig">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Accounting ID</span>
+                            <div class="summary-accounting-cell">
+                                <span class="summary-val" id="accountingId">—</span>
+                                <!--<span class="summary-pending-badge" id="pendingBadge">Pending</span>-->
+                            </div>
+                        </div>
+                    </div>
+                    <button id="generateItemButton" class="create-btn" disabled>
+                        + Generate Item
+                    </button>
+                    <p class="create-hint" id="createHint">Complete all attributes to enable</p>
+                </div>
+            </aside>
+        </div>
+        </div>
+
+        <!-- Hidden element kept for service compatibility -->
+        <span id="desc_output" style="display:none"></span>
+
+        <script src="js/components/customSelect.js"></script>
         <script type="module" src="js/controllers/dashboardController.js"></script>
+        <script>
+            (function () {
+                var fields = [
+                    { id: 'manufacturer', summaryId: 'manu_output' },
+                    { id: 'gauge',        summaryId: 'sum_gauge' },
+                    { id: 'width',        summaryId: 'sum_width' },
+                    { id: 'height',       summaryId: 'sum_height' },
+                    { id: 'jamb_depth',   summaryId: 'sum_jamb' },
+                    { id: 'handing',      summaryId: 'sum_handing' },
+                    { id: 'layout',       summaryId: 'sum_layout' },
+                ];
+
+                function updatePreview() {
+                    var empty = 0;
+                    fields.forEach(function (f) {
+                        var sel = document.getElementById(f.id);
+                        var el  = document.getElementById(f.summaryId);
+                        if (sel.value) {
+                            el.textContent = sel.options[sel.selectedIndex].text;
+                        } else {
+                            el.textContent = '—';
+                            empty++;
+                        }
+                    });
+
+                    var badge = document.getElementById('attributesBadge');
+                    if (badge) badge.textContent = '· ' + empty + ' attribute' + (empty !== 1 ? 's' : '') + ' left';
+
+                    var btn  = document.getElementById('generateItemButton');
+                    var hint = document.getElementById('createHint');
+                    if (empty === 0) {
+                        btn.disabled = false;
+                        btn.classList.add('create-btn--ready');
+                        hint.style.display = 'none';
+                    } else {
+                        btn.disabled = true;
+                        btn.classList.remove('create-btn--ready');
+                        hint.style.display = 'block';
+                    }
+                }
+
+                fields.forEach(function (f) {
+                    document.getElementById(f.id).addEventListener('change', updatePreview);
+                });
+
+                document.getElementById('resetButton').addEventListener('click', function () {
+                    fields.forEach(function (f) {
+                        var sel = document.getElementById(f.id);
+                        sel.value = '';
+                        sel.dispatchEvent(new Event('change'));
+                    });
+                    document.getElementById('itemNumberConfig').textContent = '—';
+                    document.getElementById('accountingId').textContent = '—';
+                    document.getElementById('pendingBadge').style.display = 'inline-block';
+                    updatePreview();
+                });
+            })();
+        </script>
     </body>
 </html>
