@@ -8,14 +8,14 @@
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
         <script type="module">
             import { getSession } from './js/services/authService.js';
-            const session = await getSession();
-            if (!session) { window.location.href = 'index.html'; }
-            else {
+            (async () => {
+                const session = await getSession();
+                if (!session) { window.location.href = 'index.html'; return; }
                 const email = session.user?.email || '';
                 const initials = email.substring(0, 2).toUpperCase();
                 document.getElementById('nav-initials').textContent = initials;
                 document.getElementById('nav-email').textContent = email;
-            }
+            })();
         </script>
     </head>
     <body class="dashboard-body">
