@@ -132,11 +132,11 @@ export async function getAccountingId(itemNumber, companyId) {
 function displayAccountingId(itemNumber, accountingId) {
     document.getElementById("itemNumberConfig").innerText = itemNumber;
     document.getElementById("accountingId").innerText = accountingId;
-    document.getElementById("manu_output").innerText = document.getElementById("manufacturer").value.toUpperCase();
-    const descEl = document.getElementById("desc_output");
-    if (descEl) descEl.innerText = "HMF";
-    const pendingBadge = document.getElementById("pendingBadge");
-    if (pendingBadge) pendingBadge.style.display = "none";
+    //document.getElementById("manu_output").innerText = document.getElementById("manufacturer").value.toUpperCase();
+    //const descEl = document.getElementById("desc_output");
+    // if (descEl) descEl.innerText = "HMF";
+    // const pendingBadge = document.getElementById("pendingBadge");
+    // if (pendingBadge) pendingBadge.style.display = "none";
 }
 
 export async function processItem(){
