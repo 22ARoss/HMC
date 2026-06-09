@@ -151,25 +151,15 @@
                         </div>
                         <div class="attr-field kd-only-field">
                             <label for="width">Width <span>· inches</span></label>
-                            <select id="width" name="width">
-                                <option value="">Select width...</option>
-                                <option value="30" data-description="2'-6&quot; opening">30</option>
-                                <option value="34" data-description="2'-10&quot; opening">34</option>
-                                <option value="36" data-description="3'-0&quot; standard">36</option>
-                                <option value="40" data-description="3'-4&quot; opening">40</option>
-                                <option value="60" data-description="5'-0&quot; double">60</option>
-                            </select>
+                            <input type="text" id="width" name="width"
+                                   maxlength="3" inputmode="numeric"
+                                   placeholder="e.g. 36" autocomplete="off">
                         </div>
                         <div class="attr-field">
                             <label for="height">Height <span>· inches</span></label>
-                            <select id="height" name="height">
-                                <option value="">Select height...</option>
-                                <option value="68" data-description="5'-8&quot; opening">68</option>
-                                <option value="70" data-description="5'-10&quot; opening">70</option>
-                                <option value="72" data-description="6'-0&quot; standard">72</option>
-                                <option value="76" data-description="6'-4&quot; opening">76</option>
-                                <option value="80" data-description="6'-8&quot; common">80</option>
-                            </select>
+                            <input type="text" id="height" name="height"
+                                   maxlength="3" inputmode="numeric"
+                                   placeholder="e.g. 80" autocomplete="off">
                         </div>
                         <div class="attr-field">
                             <label for="jamb_depth">Jamb Depth <span>· inches</span></label>
@@ -316,7 +306,15 @@
                                 <option value="CONTFS" data-description="MISC">CONT-FS</option>
                             </select>
                         </div>
-                        <div class="attr-field attr-field--full">
+                        <div class="attr-field">
+                            <label for="electrified">Electrified <span>· electrified</span></label>
+                            <select id="electrified" name="electrified">
+                                <option value="">Select Electrified...</option>
+                                <option value="true" data-description="MISC">Yes</option>
+                                <option value="false" data-description="MISC">No</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
                             <label for="fire-rating">Fire Rating <span>· door swing</span></label>
                             <select id="fire-rating" name="fire-rating">
                                 <option value="">Select fire rating...</option>
@@ -383,6 +381,10 @@
                             <span class="summary-val" id="sum_strike">—</span>
                         </div>
                         <div class="summary-row summary-row--weld" style="display:none">
+                            <span>Electrified</span>
+                            <span class="summary-val" id="sum_electrified">—</span>
+                        </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
                             <span>Hinge Prep</span>
                             <span class="summary-val" id="sum_hinge_prep">—</span>
                         </div>
@@ -447,6 +449,7 @@
                     { id: 'ept',         summaryId: 'sum_ept' },
                     { id: 'dps',         summaryId: 'sum_dps' },
                     { id: 'strike',      summaryId: 'sum_strike' },
+                    { id: 'electrified', summaryId: 'sum_electrified' },
                     { id: 'hinge-prep',  summaryId: 'sum_hinge_prep' },
                     { id: 'fire-rating', summaryId: 'sum_fire_rating' },
                 ];
@@ -455,7 +458,7 @@
                     allStockFields.forEach(function (f) {
                         var sel = document.getElementById(f.id);
                         sel.value = '';
-                        sel.dispatchEvent(new Event('change'));
+                        sel.dispatchEvent(new Event(sel.tagName === 'INPUT' ? 'input' : 'change'));
                     });
                     weldFields.forEach(function (f) {
                         var sel = document.getElementById(f.id);
@@ -478,7 +481,9 @@
                     allStockFields.forEach(function (f) {
                         var sel = document.getElementById(f.id);
                         var el  = document.getElementById(f.summaryId);
-                        el.textContent = sel.value ? sel.options[sel.selectedIndex].text : '—';
+                        el.textContent = sel.value
+                            ? (sel.tagName === 'SELECT' ? sel.options[sel.selectedIndex].text : sel.value)
+                            : '—';
                     });
 
                     // Determine which fields are required for button enable
@@ -522,7 +527,14 @@
                 }
 
                 allStockFields.forEach(function (f) {
-                    document.getElementById(f.id).addEventListener('change', updatePreview);
+                    var el = document.getElementById(f.id);
+                    el.addEventListener(el.tagName === 'INPUT' ? 'input' : 'change', updatePreview);
+                });
+
+                ['width', 'height'].forEach(function (id) {
+                    document.getElementById(id).addEventListener('input', function () {
+                        this.value = this.value.replace(/\D/g, '');
+                    });
                 });
 
                 weldFields.forEach(function (f) {

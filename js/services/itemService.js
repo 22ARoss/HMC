@@ -255,6 +255,7 @@ async function generateWeldItem(stockItem){// Function to generate the item numb
     const dps = document.getElementById("dps").value === "true";
     const strike = document.getElementById("strike").value;
     const hinge_prep = document.getElementById("hinge-prep").value;
+    const electrified = document.getElementById("electrified").value === "true";
     const fire_rating = document.getElementById("fire-rating").value;
     const manufacturer_id = stockItem.manufacturer_id;
     const company_id = stockItem.company_id;
@@ -262,7 +263,8 @@ async function generateWeldItem(stockItem){// Function to generate the item numb
 
     const eptSegment = ept ? "-EPT" : "";
     const dpsSegment = dps ? "-DPS" : "";
-    const itemNumber = `${stockItemSku}-WELD-${anchor}-${header_face}${eptSegment}${dpsSegment}-${strike}-${hinge_prep}-${fire_rating}`;
+    const electricSegment = electrified ? "E-" : "";
+    const itemNumber = `${stockItemSku}-WELD-${anchor}-${header_face}HF${eptSegment}${dpsSegment}-${electricSegment}${strike}-${hinge_prep}-${fire_rating}`;
 
     if (!stock_item_id) {
         console.error("Cannot create weld item: stock item ID not found for", stockItem.itemNumber);
@@ -280,7 +282,8 @@ async function generateWeldItem(stockItem){// Function to generate the item numb
         "itemNumber": itemNumber,
         "company_id": company_id,
         "stock_item_id": stock_item_id,
-        "manufacturer_id": manufacturer_id
+        "manufacturer_id": manufacturer_id,
+        "electrified": electrified
     };
 
     return item;

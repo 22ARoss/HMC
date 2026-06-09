@@ -217,7 +217,7 @@ body {
 .config-wrapper {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 2rem 6rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -382,6 +382,28 @@ body {
 }
 
 .attr-field select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.attr-field input[type="text"] {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  color: #1a1a1a;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.attr-field input[type="text"]::placeholder {
+  color: #9ca3af;
+}
+
+.attr-field input[type="text"]:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
@@ -610,8 +632,9 @@ body {
     border-radius: 10px;
   }
 
-  /* Larger touch targets for selects */
+  /* Larger touch targets for selects and text inputs */
   .attr-field select,
+  .attr-field input[type="text"],
   .cs-trigger {
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
