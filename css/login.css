@@ -167,3 +167,68 @@ body {
 }
 
 .sign-in-btn:hover { background: #162d57; }
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+    }
+
+    .left-panel {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 24px;
+        min-height: auto;
+        flex-shrink: 0;
+    }
+
+    .hero,
+    .left-footer {
+        display: none;
+    }
+
+    .right-panel {
+        width: 100%;
+        padding: 36px 24px 52px;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .form-wrap {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .left-panel {
+        padding: 14px 20px;
+    }
+
+    .right-panel {
+        padding: 28px 20px 44px;
+    }
+
+    .form-wrap h2 {
+        font-size: 24px;
+    }
+
+    .form-subtitle {
+        font-size: 15px;
+        margin-bottom: 28px;
+    }
+
+    .input-wrap input {
+        font-size: 16px; /* prevents iOS zoom on focus */
+        padding: 13px 14px 13px 40px;
+    }
+
+    .sign-in-btn {
+        padding: 15px;
+        font-size: 16px;
+    }
+}

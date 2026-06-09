@@ -97,7 +97,7 @@
                         <select id="configurator" name="configurator">
                             <option value="">Select configurator...</option>
                             <option value="stock" data-description="Configure stock product">Stock Item</option>
-                            <!--<option value="weld" data-description="Build welded assemblies">Welded Assembly</option>-->
+                            <option value="weld" data-description="Build welded assemblies">Welded Assembly</option>
                         </select>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                 <main class="config-main">
 
                 <!-- Attributes card -->
-                <div class="attr-card">
+                <div class="attr-card" id="stockCard">
                     <div class="attr-card-header">
                         <div class="attr-card-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
@@ -118,7 +118,17 @@
                             <p>Choose each value to build the part number</p>
                         </div>
                     </div>
-                    <div class="attr-grid">
+                    <div class="stock-type" id="stockTypeField">
+                        <div class="attr-field">
+                            <label for="stock-type">Type <span>· product type</span></label>
+                            <select id="stock-type" name="stock-type">
+                                <option value="">Select stock type...</option>
+                                <option value="KD" data-description="MISC">KD</option>
+                                <option value="stick" data-description="MISC">Stick</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="attr-grid" id="stockAttrGrid" style="display:none">
                         <div class="attr-field">
                             <label for="manufacturer">Manufacturer <span>· brand</span></label>
                             <select id="manufacturer" name="manufacturer">
@@ -139,7 +149,7 @@
                                 <option value="18" data-description="Light commercial">18</option>
                             </select>
                         </div>
-                        <div class="attr-field">
+                        <div class="attr-field kd-only-field">
                             <label for="width">Width <span>· inches</span></label>
                             <select id="width" name="width">
                                 <option value="">Select width...</option>
@@ -214,7 +224,7 @@
                                 <option value="1050">10-1/2</option>
                             </select>
                         </div>
-                        <div class="attr-field">
+                        <div class="attr-field kd-only-field">
                             <label for="handing">Handing <span>· door swing</span></label>
                             <select id="handing" name="handing">
                                 <option value="">Select handing...</option>
@@ -224,7 +234,7 @@
                                 <option value="LHR" data-description="Left hand reverse, outswing">LHR</option>
                             </select>
                         </div>
-                        <div class="attr-field attr-field--full">
+                        <div class="attr-field attr-field--full kd-only-field">
                             <label for="layout">Layout <span>· configuration</span></label>
                             <select id="layout" name="layout">
                                 <option value="">Select layout...</option>
@@ -234,10 +244,92 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Additional attribute cards go here -->
+                <div class="attr-card" id="weldCard" style="display:none">
+                    <div class="attr-card-header">
+                        <div class="attr-card-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                        </div>
+                        <div>
+                            <h2>Welded Assembly</h2>
+                            <p>Choose each value to build the part number</p>
+                        </div>
+                    </div>
+                    <div class="attr-grid">
+                        <div class="attr-field">
+                            <label for="anchor">Anchors <span>· brand</span></label>
+                            <select id="anchor" name="anchor">
+                                <option value="">Select anchor...</option>
+                                <option value="STRAP" data-description="MISC">STRAP</option>
+                                <option value="FLUZ" data-description="MISC">FLU-Z</option>
+                                <option value="RECZ" data-description="MISC">REC-Z</option>
+                                <option value="P&D" data-description="MISC">P&D</option>
+                                <option value="T" data-description="MISC">T</option>
+                                <option value="WIRE" data-description="MISC">WIRE</option>
+                                <option value="MP" data-description="MISC">MP</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="header-face">Header Face <span>· steel thickness</span></label>
+                            <select id="header-face" name="header-face">
+                                <option value="">Select header face...</option>
+                                <option value="2" data-description="MISC">2</option>
+                                <option value="4" data-description="MISC">4</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="ept">EPT <span>· inches</span></label>
+                            <select id="ept" name="ept">
+                                <option value="">Select EPT...</option>
+                                <option value="true" data-description="MISC">Yes</option>
+                                <option value="false" data-description="MISC">No</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="dps">DPS <span>· inches</span></label>
+                            <select id="dps" name="dps">
+                                <option value="">Select DPS...</option>
+                                <option value="true" data-description="MISC">Yes</option>
+                                <option value="false" data-description="MISC">No</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="strike">Strike <span>· inches</span></label>
+                            <select id="strike" name="strike">
+                                <option value="">Select strike...</option>
+                                <option value="ASA" data-description="MISC">ASA</option>
+                                <option value="T" data-description="MISC">T</option>
+                                <option value="DBLBORE" data-description="MISC">DBL BORE</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="hinge-prep">Hinge Prep <span>· inches</span></label>
+                            <select id="hinge-prep" name="hinge-prep">
+                                <option value="">Select hinge prep...</option>
+                                <option value="450SW" data-description="MISC">4-1/2 SW</option>
+                                <option value="450HW" data-description="MISC">4-1/2 HW</option>
+                                <option value="500SW" data-description="MISC">5 SW</option>
+                                <option value="500HW" data-description="MISC">5 HW</option>
+                                <option value="CONTFM" data-description="MISC">CONT-FM</option>
+                                <option value="CONTHS" data-description="MISC">CONT-HS</option>
+                                <option value="CONTFS" data-description="MISC">CONT-FS</option>
+                            </select>
+                        </div>
+                        <div class="attr-field attr-field--full">
+                            <label for="fire-rating">Fire Rating <span>· door swing</span></label>
+                            <select id="fire-rating" name="fire-rating">
+                                <option value="">Select fire rating...</option>
+                                <option value="3HR" data-description="MISC">3HR</option>
+                                <option value="NR" data-description="MISC">NR</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </main>
 
             <!-- Right: sidebar -->
-            <aside class="config-sidebar">
+            <aside class="config-sidebar" id="configSidebar" style="display:none">
                 <!-- Summary + generate -->
                 <div class="summary-card">
                     <div class="summary-header">SUMMARY</div>
@@ -250,7 +342,7 @@
                             <span>Gauge</span>
                             <span class="summary-val" id="sum_gauge">—</span>
                         </div>
-                        <div class="summary-row">
+                        <div class="summary-row kd-only-summary">
                             <span>Width</span>
                             <span class="summary-val" id="sum_width">—</span>
                         </div>
@@ -262,22 +354,61 @@
                             <span>Jamb Depth</span>
                             <span class="summary-val" id="sum_jamb">—</span>
                         </div>
-                        <div class="summary-row">
+                        <div class="summary-row kd-only-summary">
                             <span>Handing</span>
                             <span class="summary-val" id="sum_handing">—</span>
                         </div>
-                        <div class="summary-row">
+                        <div class="summary-row kd-only-summary">
                             <span>Layout</span>
                             <span class="summary-val" id="sum_layout">—</span>
                         </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>Anchors</span>
+                            <span class="summary-val" id="sum_anchor">—</span>
+                        </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>Header Face</span>
+                            <span class="summary-val" id="sum_header_face">—</span>
+                        </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>EPT</span>
+                            <span class="summary-val" id="sum_ept">—</span>
+                        </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>DPS</span>
+                            <span class="summary-val" id="sum_dps">—</span>
+                        </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>Strike</span>
+                            <span class="summary-val" id="sum_strike">—</span>
+                        </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>Hinge Prep</span>
+                            <span class="summary-val" id="sum_hinge_prep">—</span>
+                        </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>Fire Rating</span>
+                            <span class="summary-val" id="sum_fire_rating">—</span>
+                        </div>
                         <div class="summary-row summary-row--sku">
-                            <span>Item SKU</span>
+                            <span id="label_stock_sku">Stock Item SKU</span>
                             <span class="summary-val summary-val--sku" id="itemNumberConfig">—</span>
                         </div>
                         <div class="summary-row">
-                            <span>Accounting ID</span>
+                            <span id="label_stock_accounting_id">Stock Item Accounting ID</span>
                             <div class="summary-accounting-cell">
                                 <span class="summary-val" id="accountingId">—</span>
+                                <!--<span class="summary-pending-badge" id="pendingBadge">Pending</span>-->
+                            </div>
+                        </div>
+                        <div class="summary-row summary-row--sku summary-row--weld" style="display:none">
+                            <span>Weld Assembly SKU</span>
+                            <span class="summary-val summary-val--sku" id="weldItemNumberConfig">—</span>
+                        </div>
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>Weld Assembly Accounting ID</span>
+                            <div class="summary-accounting-cell">
+                                <span class="summary-val" id="weldAccountingId">—</span>
                                 <!--<span class="summary-pending-badge" id="pendingBadge">Pending</span>-->
                             </div>
                         </div>
@@ -289,7 +420,7 @@
                 </div>
             </aside>
         </div>
-        </div>
+
         
         <!-- Hidden element kept for service compatibility -->
         <span id="desc_output" style="display:none"></span>
@@ -298,7 +429,7 @@
         <script type="module" src="js/controllers/dashboardController.js"></script>
         <script>
             (function () {
-                var fields = [
+                var allStockFields = [
                     { id: 'manufacturer', summaryId: 'manu_output' },
                     { id: 'gauge',        summaryId: 'sum_gauge' },
                     { id: 'width',        summaryId: 'sum_width' },
@@ -308,18 +439,71 @@
                     { id: 'layout',       summaryId: 'sum_layout' },
                 ];
 
+                var stickFieldIds = ['manufacturer', 'gauge', 'height', 'jamb_depth'];
+
+                var weldFields = [
+                    { id: 'anchor',      summaryId: 'sum_anchor' },
+                    { id: 'header-face', summaryId: 'sum_header_face' },
+                    { id: 'ept',         summaryId: 'sum_ept' },
+                    { id: 'dps',         summaryId: 'sum_dps' },
+                    { id: 'strike',      summaryId: 'sum_strike' },
+                    { id: 'hinge-prep',  summaryId: 'sum_hinge_prep' },
+                    { id: 'fire-rating', summaryId: 'sum_fire_rating' },
+                ];
+
+                function clearAttributes() {
+                    allStockFields.forEach(function (f) {
+                        var sel = document.getElementById(f.id);
+                        sel.value = '';
+                        sel.dispatchEvent(new Event('change'));
+                    });
+                    weldFields.forEach(function (f) {
+                        var sel = document.getElementById(f.id);
+                        sel.value = '';
+                        sel.dispatchEvent(new Event('change'));
+                        var el = document.getElementById(f.summaryId);
+                        if (el) el.textContent = '—';
+                    });
+                    document.getElementById('itemNumberConfig').textContent = '—';
+                    document.getElementById('accountingId').textContent = '—';
+                    document.getElementById('weldItemNumberConfig').textContent = '—';
+                    document.getElementById('weldAccountingId').textContent = '—';
+                }
+
                 function updatePreview() {
-                    var empty = 0;
-                    fields.forEach(function (f) {
+                    var configurator = document.getElementById('configurator').value;
+                    var stockType    = document.getElementById('stock-type').value;
+
+                    // Update all stock field summary cells
+                    allStockFields.forEach(function (f) {
                         var sel = document.getElementById(f.id);
                         var el  = document.getElementById(f.summaryId);
-                        if (sel.value) {
-                            el.textContent = sel.options[sel.selectedIndex].text;
-                        } else {
-                            el.textContent = '—';
-                            empty++;
-                        }
+                        el.textContent = sel.value ? sel.options[sel.selectedIndex].text : '—';
                     });
+
+                    // Determine which fields are required for button enable
+                    var empty = 0;
+                    if (configurator === 'stock') {
+                        if (!stockType) {
+                            empty++;
+                        } else {
+                            var requiredFields = stockType === 'stick'
+                                ? allStockFields.filter(function (f) { return stickFieldIds.indexOf(f.id) !== -1; })
+                                : allStockFields;
+                            requiredFields.forEach(function (f) {
+                                if (!document.getElementById(f.id).value) empty++;
+                            });
+                        }
+                    } else if (configurator === 'weld') {
+                        allStockFields.forEach(function (f) {
+                            if (!document.getElementById(f.id).value) empty++;
+                        });
+                        weldFields.forEach(function (f) {
+                            if (!document.getElementById(f.id).value) empty++;
+                        });
+                    } else {
+                        empty = 1; // no configurator chosen
+                    }
 
                     var badge = document.getElementById('attributesBadge');
                     if (badge) badge.textContent = '· ' + empty + ' attribute' + (empty !== 1 ? 's' : '') + ' left';
@@ -337,25 +521,111 @@
                     }
                 }
 
-                fields.forEach(function (f) {
+                allStockFields.forEach(function (f) {
                     document.getElementById(f.id).addEventListener('change', updatePreview);
                 });
 
+                weldFields.forEach(function (f) {
+                    document.getElementById(f.id).addEventListener('change', function () {
+                        var sel = document.getElementById(f.id);
+                        var el  = document.getElementById(f.summaryId);
+                        if (el) el.textContent = sel.value ? sel.options[sel.selectedIndex].text : '—';
+                        updatePreview();
+                    });
+                });
+
+                function applyStockTypeVisibility(stockType) {
+                    var stockAttrGrid      = document.getElementById('stockAttrGrid');
+                    var kdOnlyFields       = document.querySelectorAll('.kd-only-field');
+                    var kdOnlySummaryRows  = document.querySelectorAll('.kd-only-summary');
+                    var labelSku           = document.getElementById('label_stock_sku');
+                    var labelAccounting    = document.getElementById('label_stock_accounting_id');
+
+                    if (stockType) {
+                        stockAttrGrid.style.display = '';
+                        if (stockType === 'stick') {
+                            kdOnlyFields.forEach(function (field) {
+                                field.style.display = 'none';
+                                var sel = field.querySelector('select');
+                                if (sel) sel.value = '';
+                            });
+                            kdOnlySummaryRows.forEach(function (r) { r.style.display = 'none'; });
+                            if (labelSku)        labelSku.textContent        = 'Stick Item SKU';
+                            if (labelAccounting) labelAccounting.textContent = 'Stick Item Accounting ID';
+                        } else {
+                            kdOnlyFields.forEach(function (field) { field.style.display = ''; });
+                            kdOnlySummaryRows.forEach(function (r) { r.style.display = ''; });
+                            if (labelSku)        labelSku.textContent        = 'Stock Item SKU';
+                            if (labelAccounting) labelAccounting.textContent = 'Stock Item Accounting ID';
+                        }
+                    } else {
+                        stockAttrGrid.style.display = 'none';
+                        kdOnlySummaryRows.forEach(function (r) { r.style.display = ''; });
+                        if (labelSku)        labelSku.textContent        = 'Stock Item SKU';
+                        if (labelAccounting) labelAccounting.textContent = 'Stock Item Accounting ID';
+                    }
+                }
+
+                document.getElementById('stock-type').addEventListener('change', function () {
+                    clearAttributes();
+                    applyStockTypeVisibility(this.value);
+                    document.getElementById('configSidebar').style.display = this.value ? '' : 'none';
+                    updatePreview();
+                });
+
                 document.getElementById('configurator').addEventListener('change', function () {
-                    var layout = document.getElementById('configLayout');
-                    layout.style.display = this.value === 'stock' ? '' : 'none';
+                    clearAttributes();
+                    var layout         = document.getElementById('configLayout');
+                    var stockCard      = document.getElementById('stockCard');
+                    var weldCard       = document.getElementById('weldCard');
+                    var weldRows       = document.querySelectorAll('.summary-row--weld');
+                    var stockTypeField = document.getElementById('stockTypeField');
+                    var stockAttrGrid  = document.getElementById('stockAttrGrid');
+
+                    if (this.value === 'stock') {
+                        layout.style.display        = '';
+                        stockCard.style.display     = '';
+                        weldCard.style.display      = 'none';
+                        weldRows.forEach(function (r) { r.style.display = 'none'; });
+                        stockTypeField.style.display = '';
+                        stockAttrGrid.style.display  = 'none';
+                        applyStockTypeVisibility(document.getElementById('stock-type').value);
+                        document.getElementById('configSidebar').style.display = document.getElementById('stock-type').value ? '' : 'none';
+                    } else if (this.value === 'weld') {
+                        layout.style.display        = '';
+                        stockCard.style.display     = '';
+                        weldCard.style.display      = '';
+                        weldRows.forEach(function (r) { r.style.display = ''; });
+                        stockTypeField.style.display = 'none';
+                        document.getElementById('stock-type').value = '';
+                        stockAttrGrid.style.display  = '';
+                        // Weld always shows all stock fields and stock labels
+                        document.querySelectorAll('.kd-only-field').forEach(function (f) { f.style.display = ''; });
+                        document.querySelectorAll('.kd-only-summary').forEach(function (r) { r.style.display = ''; });
+                        var lSku = document.getElementById('label_stock_sku');
+                        var lAcc = document.getElementById('label_stock_accounting_id');
+                        if (lSku) lSku.textContent = 'Stock Item SKU';
+                        if (lAcc) lAcc.textContent = 'Stock Item Accounting ID';
+                        document.getElementById('configSidebar').style.display = '';
+                    } else {
+                        layout.style.display = 'none';
+                        weldRows.forEach(function (r) { r.style.display = 'none'; });
+                    }
+
+                    updatePreview();
                 });
 
                 document.getElementById('resetButton').addEventListener('click', function () {
                     document.getElementById('configurator').value = '';
                     document.getElementById('configLayout').style.display = 'none';
-                    fields.forEach(function (f) {
-                        var sel = document.getElementById(f.id);
-                        sel.value = '';
-                        sel.dispatchEvent(new Event('change'));
-                    });
-                    document.getElementById('itemNumberConfig').textContent = '—';
-                    document.getElementById('accountingId').textContent = '—';
+                    document.getElementById('weldCard').style.display = 'none';
+                    document.querySelectorAll('.summary-row--weld').forEach(function (r) { r.style.display = 'none'; });
+
+                    document.getElementById('stock-type').value = '';
+                    document.getElementById('configSidebar').style.display = 'none';
+                    applyStockTypeVisibility('');
+
+                    clearAttributes();
                     updatePreview();
                 });
             })();
