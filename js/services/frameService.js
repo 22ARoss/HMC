@@ -32,7 +32,7 @@ async function getManufacturerPrefixAndId(manufacturerName) { // Get manufacture
         return;
     }
 
-    return { prefix: data?.prefix, id: data?.id }
+    return { prefix: data?.prefix, manu_id: data?.id }
 }
 async function insertItem(item, configType, stockType = null) {// Function to insert the item into the items table
     let data, error;
@@ -147,8 +147,8 @@ function displayAccountingId(itemNumber, accountingId, configType, stockType = n
 // Start of Stock Item Functions
 async function generateStockItem(companyId){// Function to generate the item number and object to be inserted for stock items
     const manufacturer = document.getElementById("manufacturer").value.toUpperCase();
-    const { prefix, id } = await getManufacturerPrefixAndId(manufacturer);
-    if (!id || !prefix) {
+    const { prefix, manu_id } = await getManufacturerPrefixAndId(manufacturer);
+    if (!manu_id || !prefix) {
         console.error("Invalid manufacturer selected:", manufacturer);
         return null;
     }
@@ -169,7 +169,7 @@ async function generateStockItem(companyId){// Function to generate the item num
         "handing": handing,
         "layout": layout,
         "itemNumber": itemNumber,
-        "manufacturer_id": id,
+        "manufacturer_id": manu_id,
         "company_id": companyId
     };
 
@@ -201,8 +201,8 @@ async function processStockItem(companyId, configType){// Function to handle the
 // Start of Stick Item Functions
 async function generateStickItem(companyId){// Function to generate the item number and object to be inserted for stick items
     const manufacturer = document.getElementById("manufacturer").value.toUpperCase();
-    const { prefix, id } = await getManufacturerPrefixAndId(manufacturer);
-    if (!id || !prefix) {
+    const { prefix, manu_id } = await getManufacturerPrefixAndId(manufacturer);
+    if (!manu_id || !prefix) {
         console.error("Invalid manufacturer selected:", manufacturer);
         return null;
     }
@@ -217,7 +217,7 @@ async function generateStickItem(companyId){// Function to generate the item num
         "height": height,
         "jamb_depth": jamb_depth,
         "itemNumber": itemNumber,
-        "manufacturer_id": id,
+        "manufacturer_id": manu_id,
         "company_id": companyId
     };
 

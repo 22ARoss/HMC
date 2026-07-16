@@ -3,7 +3,7 @@ import { login, getSession } from '../services/authService.js';
 getSession().then(session => {
     if (session) {
         // User is already logged in, redirect to dashboard
-        window.location.href = 'dashboard.html';
+        window.location.href = 'frameConfig.html';
     }
 });
 
@@ -20,5 +20,5 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         return;
     }
 
-    window.location.href = 'dashboard.html';
+    window.location.href = 'frameConfig.html';
 });

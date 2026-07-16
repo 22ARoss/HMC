@@ -27,15 +27,15 @@
                 <span class="nav-brand-name">HMC</span>
             </div>
             <div class="nav-links">
-                <a href="#" class="nav-link nav-link--active">
+                <a href="frameConfig.html" class="nav-link">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                    Configurator
+                    HMFC
+                </a>
+                <a href="#" class="nav-link nav-link--active">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    HMDC
                 </a>
                 <!--
-                <a href="#" class="nav-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    Inventory
-                </a>
                 <a href="#" class="nav-link">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     Profile
@@ -59,9 +59,9 @@
         <!-- Sub-header -->
         <div class="page-subheader">
             <div class="breadcrumb">
-                <span class="breadcrumb-section">Configurator</span>
+                <span class="breadcrumb-section">Hollow Metal Door Configurator</span>
                 <span class="breadcrumb-sep">|</span>
-                <span class="breadcrumb-path">HMC / <span class="breadcrumb-current">New part</span></span>
+                <span class="breadcrumb-path">HMC / <span class="breadcrumb-current">HMDF</span></span>
             </div>
             <button class="subheader-bell" aria-label="Notifications">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -72,7 +72,7 @@
         <div class="config-wrapper">
             <div class="config-title-row">
                 <div>
-                    <span class="config-eyebrow">NEW CONFIGURATION</span>
+                    <span class="config-eyebrow">NEW HMD CONFIGURATION</span>
                     <h1 class="config-heading">Part Number Configurator</h1>
                     <p class="config-desc">Select each attribute to assemble a valid HMC part number. An accounting ID is reserved automatically and committed when you generate the part.</p>
                 </div>
@@ -96,8 +96,8 @@
                         <label for="configurator">Configurator <span>· product type</span></label>
                         <select id="configurator" name="configurator">
                             <option value="">Select configurator...</option>
-                            <option value="stock" data-description="Configure stock product">Stock Item</option>
-                            <option value="weld" data-description="Build welded assemblies">Welded Assembly</option>
+                            <option value="stock" data-description="Configure stock product">Stock Door</option>
+                            <option value="weld" data-description="Build welded assemblies">Welded Door Assembly</option>
                         </select>
                     </div>
                 </div>
@@ -114,18 +114,8 @@
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                         </div>
                         <div>
-                            <h2>Stock Attributes</h2>
+                            <h2>Stock Door Attributes</h2>
                             <p>Choose each value to build the part number</p>
-                        </div>
-                    </div>
-                    <div class="stock-type" id="stockTypeField">
-                        <div class="attr-field">
-                            <label for="stock-type">Type <span>· product type</span></label>
-                            <select id="stock-type" name="stock-type">
-                                <option value="">Select stock type...</option>
-                                <option value="KD" data-description="MISC">KD</option>
-                                <option value="stick" data-description="MISC">Stick</option>
-                            </select>
                         </div>
                     </div>
                     <div class="attr-grid" id="stockAttrGrid" style="display:none">
@@ -141,15 +131,6 @@
                             </select>
                         </div>
                         <div class="attr-field">
-                            <label for="gauge">Gauge <span>· steel thickness</span></label>
-                            <select id="gauge" name="gauge">
-                                <option value="">Select gauge...</option>
-                                <option value="14" data-description="Heavy commercial grade">14</option>
-                                <option value="16" data-description="Standard commercial">16</option>
-                                <option value="18" data-description="Light commercial">18</option>
-                            </select>
-                        </div>
-                        <div class="attr-field kd-only-field">
                             <label for="width">Width <span>· inches</span></label>
                             <input type="text" id="width" name="width"
                                    maxlength="3" inputmode="numeric"
@@ -162,59 +143,80 @@
                                    placeholder="e.g. 80" autocomplete="off">
                         </div>
                         <div class="attr-field">
-                            <label for="jamb_depth">Jamb Depth <span>· inches</span></label>
-                            <select id="jamb_depth" name="jamb_depth">
-                                <option value="">Select jamb depth...</option>
-                                <option value="475">4-3/4</option>
-                                <option value="487">4-7/8</option>
-                                <option value="500">5</option>
-                                <option value="512">5-1/8</option>
-                                <option value="525">5-1/4</option>
-                                <option value="537">5-3/8</option>
-                                <option value="550">5-1/2</option>
-                                <option value="567">5-5/8</option>
-                                <option value="575">5-3/4</option>
-                                <option value="587">5-7/8</option>
-                                <option value="600">6</option>
-                                <option value="612">6-1/8</option>
-                                <option value="625">6-1/4</option>
-                                <option value="637">6-3/8</option>
-                                <option value="650">6-1/2</option>
-                                <option value="667">6-5/8</option>
-                                <option value="675">6-3/4</option>
-                                <option value="687">6-7/8</option>
-                                <option value="700">7</option>
-                                <option value="712">7-1/8</option>
-                                <option value="725">7-1/4</option>
-                                <option value="737">7-3/8</option>
-                                <option value="750">7-1/2</option>
-                                <option value="767">7-5/8</option>
-                                <option value="775">7-3/4</option>
-                                <option value="787">7-7/8</option>
-                                <option value="800">8</option>
-                                <option value="812">8-1/8</option>
-                                <option value="825">8-1/4</option>
-                                <option value="837">8-3/8</option>
-                                <option value="850">8-1/2</option>
-                                <option value="867">8-5/8</option>
-                                <option value="875">8-3/4</option>
-                                <option value="887">8-7/8</option>
-                                <option value="900">9</option>
-                                <option value="912">9-1/8</option>
-                                <option value="925">9-1/4</option>
-                                <option value="937">9-3/8</option>
-                                <option value="950">9-1/2</option>
-                                <option value="967">9-5/8</option>
-                                <option value="975">9-3/4</option>
-                                <option value="987">9-7/8</option>
-                                <option value="1000">10</option>
-                                <option value="1012">10-1/8</option>
-                                <option value="1025">10-1/4</option>
-                                <option value="1037">10-3/8</option>
-                                <option value="1050">10-1/2</option>
+                            <label for="thickness">Thickness <span>· steel thickness</span></label>
+                            <select id="thickness" name="thickness">
+                                <option value="">Select thickness...</option>
+                                <option value="175" data-description="MISC">1-3/4"</option>
                             </select>
                         </div>
-                        <div class="attr-field kd-only-field">
+                        <div class="attr-field">
+                            <label for="gauge">Gauge <span>· steel thickness</span></label>
+                            <select id="gauge" name="gauge">
+                                <option value="">Select gauge...</option>
+                                <option value="14" data-description="Heavy commercial grade">14</option>
+                                <option value="16" data-description="Standard commercial">16</option>
+                                <option value="18" data-description="Light commercial">18</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="edge">Edge <span>· inches</span></label>
+                            <select id="edge" name="edge">
+                                <option value="">Select Edge...</option>
+                                <option value="BEV" data-description="MISC">BEV</option>
+                                <option value="SQ" data-description="MISC">SQ</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="lock-prep">Lock Prep <span>· brand</span></label>
+                            <select id="lock-prep" name="lock-prep">
+                                <option value="">Select lock prep...</option>
+                                <option value="MORT" data-description="MISC">MORT</option>
+                                <option value="CYL" data-description="MISC">CYL</option>
+                                <option value="RIM" data-description="MISC">RIM</option>
+                                <option value="DBLBORE" data-description="MISC">DBLBORE</option>
+                                <option value="CVR" data-description="MISC">CVR</option>
+                                <option value="SVR" data-description="MISC">SVR</option>
+                                <option value="DBLT" data-description="MISC">DBLT</option>
+                                <option value="FLEBOLT/ASA" data-description="MISC">FLEBOLT/ASA</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="core">Core <span>· inches</span></label>
+                            <select id="core" name="core">
+                                <option value="">Select Core...</option>
+                                <option value="PLYSTY" data-description="MISC">PLYSTY</option>
+                                <option value="PLYURE" data-description="MISC">PLYURE</option>
+                                <option value="STST" data-description="MISC">STST</option>
+                                <option value="TR" data-description="MISC">TR</option>
+                                <option value="HC" data-description="MISC">HC</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="hinge-prep">Hinge Prep <span>· steel thickness</span></label>
+                            <select id="hinge-prep" name="hinge-prep">
+                                <option value="">Select hinge prep...</option>
+                                <option value="3/45SW" data-description="MISC">3qt 4-1/2-SW</option>
+                                <option value="4/45SW" data-description="MISC">4qt 4-1/2-SW</option>
+                                <option value="3/45HW" data-description="MISC">3qt 4-1/2-HW</option>
+                                <option value="4/45HW" data-description="MISC">4qt 4-1/2-HW</option>
+                                <option value="3/50SW" data-description="MISC">3qt 5-SW</option>
+                                <option value="4/50SW" data-description="MISC">4qt 5-SW</option>
+                                <option value="3/50HW" data-description="MISC">3qt 5-HW</option>
+                                <option value="4/50HW" data-description="MISC">4qt 5-HW</option>
+                                <option value="CONTFM" data-description="MISC">CONT-FM</option>
+                                <option value="CONTHS" data-description="MISC">CONT-HS</option>
+                                <option value="CONTFS" data-description="MISC">CONT-FS</option>
+                            </select>
+                        </div>
+                        <div class="attr-field">
+                            <label for="fire-rating">Fire Rating <span>· door swing</span></label>
+                            <select id="fire-rating" name="fire-rating">
+                                <option value="">Select fire rating...</option>
+                                <option value="3HR" data-description="MISC">3HR</option>
+                                <option value="NR" data-description="MISC">NR</option>
+                            </select>
+                        </div>
+                        <div class="attr-field attr-field--full">
                             <label for="handing">Handing <span>· door swing</span></label>
                             <select id="handing" name="handing">
                                 <option value="">Select handing...</option>
@@ -224,17 +226,8 @@
                                 <option value="LHR" data-description="Left hand reverse, outswing">LHR</option>
                             </select>
                         </div>
-                        <div class="attr-field attr-field--full kd-only-field">
-                            <label for="layout">Layout <span>· configuration</span></label>
-                            <select id="layout" name="layout">
-                                <option value="">Select layout...</option>
-                                <option value="LAUSD" data-description="Los Angeles school district spec">LAUSD</option>
-                                <option value="STD" data-description="Standard configuration">STD</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
-
                 <!-- Additional attribute cards go here -->
                 <div class="attr-card" id="weldCard" style="display:none">
                     <div class="attr-card-header">
@@ -242,30 +235,27 @@
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                         </div>
                         <div>
-                            <h2>Welded Assembly</h2>
+                            <h2>Welded Door Assembly</h2>
                             <p>Choose each value to build the part number</p>
                         </div>
                     </div>
                     <div class="attr-grid">
                         <div class="attr-field">
-                            <label for="anchor">Anchors <span>· brand</span></label>
-                            <select id="anchor" name="anchor">
-                                <option value="">Select anchor...</option>
-                                <option value="STRAP" data-description="MISC">STRAP</option>
-                                <option value="FLUZ" data-description="MISC">FLU-Z</option>
-                                <option value="RECZ" data-description="MISC">REC-Z</option>
-                                <option value="P&D" data-description="MISC">P&D</option>
-                                <option value="T" data-description="MISC">T</option>
-                                <option value="WIRE" data-description="MISC">WIRE</option>
-                                <option value="MP" data-description="MISC">MP</option>
+                            <label for="undercut">Undercut <span>· inches</span></label>
+                            <select id="undercut" name="undercut">
+                                <option value="">Select Undercut...</option>
+                                <option value="062" data-description="MISC">5/8"</option>
+                                <option value="075" data-description="MISC">3/4"</option>
+                                <option value="100" data-description="MISC">1"</option>
                             </select>
                         </div>
                         <div class="attr-field">
-                            <label for="header-face">Header Face <span>· steel thickness</span></label>
-                            <select id="header-face" name="header-face">
-                                <option value="">Select header face...</option>
-                                <option value="2" data-description="MISC">2</option>
-                                <option value="4" data-description="MISC">4</option>
+                            <label for="cutout">Cutout <span>· inches</span></label>
+                            <select id="cutout" name="cutout">
+                                <option value="">Select Cutout...</option>
+                                <option value="VL" data-description="MISC">Vision Lite</option>
+                                <option value="LV" data-description="MISC">Louver</option>
+                                <option value="FL" data-description="MISC">Flush</option>
                             </select>
                         </div>
                         <div class="attr-field">
@@ -284,46 +274,12 @@
                                 <option value="false" data-description="MISC">No</option>
                             </select>
                         </div>
-                        <div class="attr-field">
-                            <label for="strike">Strike <span>· inches</span></label>
-                            <select id="strike" name="strike">
-                                <option value="">Select strike...</option>
-                                <option value="ASA" data-description="MISC">ASA</option>
-                                <option value="T" data-description="MISC">T</option>
-                                <option value="DBLBORE" data-description="MISC">DBL BORE</option>
-                            </select>
-                        </div>
-                        <div class="attr-field">
-                            <label for="hinge-prep">Hinge Prep <span>· inches</span></label>
-                            <select id="hinge-prep" name="hinge-prep">
-                                <option value="">Select hinge prep...</option>
-                                <option value="3/45SW" data-description="MISC">3qt 4-1/2-SW</option>
-                                <option value="4/45SW" data-description="MISC">4qt 4-1/2-SW</option>
-                                <option value="3/45HW" data-description="MISC">3qt 4-1/2-HW</option>
-                                <option value="4/45HW" data-description="MISC">4qt 4-1/2-HW</option>
-                                <option value="3/50SW" data-description="MISC">3qt 5-SW</option>
-                                <option value="4/50SW" data-description="MISC">4qt 5-SW</option>
-                                <option value="3/50HW" data-description="MISC">3qt 5-HW</option>
-                                <option value="4/50HW" data-description="MISC">4qt 5-HW</option>
-                                <option value="CONTFM" data-description="MISC">CONT-FM</option>
-                                <option value="CONTHS" data-description="MISC">CONT-HS</option>
-                                <option value="CONTFS" data-description="MISC">CONT-FS</option>
-                            </select>
-                        </div>
-                        <div class="attr-field">
-                            <label for="electrified">Electrified <span>· electrified</span></label>
-                            <select id="electrified" name="electrified">
-                                <option value="">Select Electrified...</option>
+                        <div class="attr-field attr-field--full">
+                            <label for="raceway">Raceway <span>· inches</span></label>
+                            <select id="raceway" name="raceway">
+                                <option value="">Select Raceway...</option>
                                 <option value="true" data-description="MISC">Yes</option>
                                 <option value="false" data-description="MISC">No</option>
-                            </select>
-                        </div>
-                        <div class="attr-field">
-                            <label for="fire-rating">Fire Rating <span>· door swing</span></label>
-                            <select id="fire-rating" name="fire-rating">
-                                <option value="">Select fire rating...</option>
-                                <option value="3HR" data-description="MISC">3HR</option>
-                                <option value="NR" data-description="MISC">NR</option>
                             </select>
                         </div>
                     </div>
@@ -341,10 +297,6 @@
                             <span class="summary-val" id="manu_output">—</span>
                         </div>
                         <div class="summary-row">
-                            <span>Gauge</span>
-                            <span class="summary-val" id="sum_gauge">—</span>
-                        </div>
-                        <div class="summary-row kd-only-summary">
                             <span>Width</span>
                             <span class="summary-val" id="sum_width">—</span>
                         </div>
@@ -353,24 +305,45 @@
                             <span class="summary-val" id="sum_height">—</span>
                         </div>
                         <div class="summary-row">
-                            <span>Jamb Depth</span>
-                            <span class="summary-val" id="sum_jamb">—</span>
+                            <span>Thickness</span>
+                            <span class="summary-val" id="sum_thickness">—</span>
                         </div>
-                        <div class="summary-row kd-only-summary">
+                        <div class="summary-row">
+                            <span>Gauge</span>
+                            <span class="summary-val" id="sum_gauge">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Edge</span>
+                            <span class="summary-val" id="sum_edge">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Lock Prep</span>
+                            <span class="summary-val" id="sum_lock_prep">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Core</span>
+                            <span class="summary-val" id="sum_core">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Hinge Prep</span>
+                            <span class="summary-val" id="sum_hinge_prep">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Fire Rating</span>
+                            <span class="summary-val" id="sum_fire_rating">—</span>
+                        </div>
+                        <div class="summary-row">
                             <span>Handing</span>
                             <span class="summary-val" id="sum_handing">—</span>
                         </div>
-                        <div class="summary-row kd-only-summary">
-                            <span>Layout</span>
-                            <span class="summary-val" id="sum_layout">—</span>
+                        <!-- Start of Weld Section -->
+                        <div class="summary-row summary-row--weld" style="display:none">
+                            <span>Undercut</span>
+                            <span class="summary-val" id="sum_undercut">—</span>
                         </div>
                         <div class="summary-row summary-row--weld" style="display:none">
-                            <span>Anchors</span>
-                            <span class="summary-val" id="sum_anchor">—</span>
-                        </div>
-                        <div class="summary-row summary-row--weld" style="display:none">
-                            <span>Header Face</span>
-                            <span class="summary-val" id="sum_header_face">—</span>
+                            <span>Cutout</span>
+                            <span class="summary-val" id="sum_cutout">—</span>
                         </div>
                         <div class="summary-row summary-row--weld" style="display:none">
                             <span>EPT</span>
@@ -381,20 +354,8 @@
                             <span class="summary-val" id="sum_dps">—</span>
                         </div>
                         <div class="summary-row summary-row--weld" style="display:none">
-                            <span>Strike</span>
-                            <span class="summary-val" id="sum_strike">—</span>
-                        </div>
-                        <div class="summary-row summary-row--weld" style="display:none">
-                            <span>Electrified</span>
-                            <span class="summary-val" id="sum_electrified">—</span>
-                        </div>
-                        <div class="summary-row summary-row--weld" style="display:none">
-                            <span>Hinge Prep</span>
-                            <span class="summary-val" id="sum_hinge_prep">—</span>
-                        </div>
-                        <div class="summary-row summary-row--weld" style="display:none">
-                            <span>Fire Rating</span>
-                            <span class="summary-val" id="sum_fire_rating">—</span>
+                            <span>Raceway</span>
+                            <span class="summary-val" id="sum_raceway">—</span>
                         </div>
                         <div class="summary-row summary-row--sku">
                             <span id="label_stock_sku">Stock Item SKU</span>
@@ -432,30 +393,29 @@
         <span id="desc_output" style="display:none"></span>
 
         <script src="js/components/customSelect.js"></script>
-        <script type="module" src="js/controllers/dashboardController.js"></script>
+        <script type="module" src="js/controllers/doorConfigController.js"></script>
         <script>
             (function () {
                 var allStockFields = [
                     { id: 'manufacturer', summaryId: 'manu_output' },
-                    { id: 'gauge',        summaryId: 'sum_gauge' },
                     { id: 'width',        summaryId: 'sum_width' },
                     { id: 'height',       summaryId: 'sum_height' },
-                    { id: 'jamb_depth',   summaryId: 'sum_jamb' },
+                    { id: 'thickness',    summaryId: 'sum_thickness' },
+                    { id: 'gauge',        summaryId: 'sum_gauge' },
+                    { id: 'edge',         summaryId: 'sum_edge' },
+                    { id: 'lock-prep',    summaryId: 'sum_lock_prep' },
+                    { id: 'core',         summaryId: 'sum_core' },
+                    { id: 'hinge-prep',   summaryId: 'sum_hinge_prep' },
                     { id: 'handing',      summaryId: 'sum_handing' },
-                    { id: 'layout',       summaryId: 'sum_layout' },
+                    { id: 'fire-rating',  summaryId: 'sum_fire_rating' },
                 ];
 
-                var stickFieldIds = ['manufacturer', 'gauge', 'height', 'jamb_depth'];
-
                 var weldFields = [
-                    { id: 'anchor',      summaryId: 'sum_anchor' },
-                    { id: 'header-face', summaryId: 'sum_header_face' },
                     { id: 'ept',         summaryId: 'sum_ept' },
                     { id: 'dps',         summaryId: 'sum_dps' },
-                    { id: 'strike',      summaryId: 'sum_strike' },
-                    { id: 'electrified', summaryId: 'sum_electrified' },
-                    { id: 'hinge-prep',  summaryId: 'sum_hinge_prep' },
-                    { id: 'fire-rating', summaryId: 'sum_fire_rating' },
+                    { id: 'raceway',     summaryId: 'sum_raceway' },
+                    { id: 'undercut',    summaryId: 'sum_undercut' },
+                    { id: 'cutout',      summaryId: 'sum_cutout' },
                 ];
 
                 function clearAttributes() {
@@ -479,9 +439,7 @@
 
                 function updatePreview() {
                     var configurator = document.getElementById('configurator').value;
-                    var stockType    = document.getElementById('stock-type').value;
 
-                    // Update all stock field summary cells
                     allStockFields.forEach(function (f) {
                         var sel = document.getElementById(f.id);
                         var el  = document.getElementById(f.summaryId);
@@ -490,19 +448,11 @@
                             : '—';
                     });
 
-                    // Determine which fields are required for button enable
                     var empty = 0;
                     if (configurator === 'stock') {
-                        if (!stockType) {
-                            empty++;
-                        } else {
-                            var requiredFields = stockType === 'stick'
-                                ? allStockFields.filter(function (f) { return stickFieldIds.indexOf(f.id) !== -1; })
-                                : allStockFields;
-                            requiredFields.forEach(function (f) {
-                                if (!document.getElementById(f.id).value) empty++;
-                            });
-                        }
+                        allStockFields.forEach(function (f) {
+                            if (!document.getElementById(f.id).value) empty++;
+                        });
                     } else if (configurator === 'weld') {
                         allStockFields.forEach(function (f) {
                             if (!document.getElementById(f.id).value) empty++;
@@ -511,7 +461,7 @@
                             if (!document.getElementById(f.id).value) empty++;
                         });
                     } else {
-                        empty = 1; // no configurator chosen
+                        empty = 1;
                     }
 
                     var badge = document.getElementById('attributesBadge');
@@ -550,78 +500,27 @@
                     });
                 });
 
-                function applyStockTypeVisibility(stockType) {
-                    var stockAttrGrid      = document.getElementById('stockAttrGrid');
-                    var kdOnlyFields       = document.querySelectorAll('.kd-only-field');
-                    var kdOnlySummaryRows  = document.querySelectorAll('.kd-only-summary');
-                    var labelSku           = document.getElementById('label_stock_sku');
-                    var labelAccounting    = document.getElementById('label_stock_accounting_id');
-
-                    if (stockType) {
-                        stockAttrGrid.style.display = '';
-                        if (stockType === 'stick') {
-                            kdOnlyFields.forEach(function (field) {
-                                field.style.display = 'none';
-                                var sel = field.querySelector('select');
-                                if (sel) sel.value = '';
-                            });
-                            kdOnlySummaryRows.forEach(function (r) { r.style.display = 'none'; });
-                            if (labelSku)        labelSku.textContent        = 'Stick Item SKU';
-                            if (labelAccounting) labelAccounting.textContent = 'Stick Item Accounting ID';
-                        } else {
-                            kdOnlyFields.forEach(function (field) { field.style.display = ''; });
-                            kdOnlySummaryRows.forEach(function (r) { r.style.display = ''; });
-                            if (labelSku)        labelSku.textContent        = 'Stock Item SKU';
-                            if (labelAccounting) labelAccounting.textContent = 'Stock Item Accounting ID';
-                        }
-                    } else {
-                        stockAttrGrid.style.display = 'none';
-                        kdOnlySummaryRows.forEach(function (r) { r.style.display = ''; });
-                        if (labelSku)        labelSku.textContent        = 'Stock Item SKU';
-                        if (labelAccounting) labelAccounting.textContent = 'Stock Item Accounting ID';
-                    }
-                }
-
-                document.getElementById('stock-type').addEventListener('change', function () {
-                    clearAttributes();
-                    applyStockTypeVisibility(this.value);
-                    document.getElementById('configSidebar').style.display = this.value ? '' : 'none';
-                    updatePreview();
-                });
-
                 document.getElementById('configurator').addEventListener('change', function () {
                     clearAttributes();
-                    var layout         = document.getElementById('configLayout');
-                    var stockCard      = document.getElementById('stockCard');
-                    var weldCard       = document.getElementById('weldCard');
-                    var weldRows       = document.querySelectorAll('.summary-row--weld');
-                    var stockTypeField = document.getElementById('stockTypeField');
-                    var stockAttrGrid  = document.getElementById('stockAttrGrid');
+                    var layout        = document.getElementById('configLayout');
+                    var stockCard     = document.getElementById('stockCard');
+                    var weldCard      = document.getElementById('weldCard');
+                    var weldRows      = document.querySelectorAll('.summary-row--weld');
+                    var stockAttrGrid = document.getElementById('stockAttrGrid');
 
                     if (this.value === 'stock') {
                         layout.style.display        = '';
                         stockCard.style.display     = '';
                         weldCard.style.display      = 'none';
                         weldRows.forEach(function (r) { r.style.display = 'none'; });
-                        stockTypeField.style.display = '';
-                        stockAttrGrid.style.display  = 'none';
-                        applyStockTypeVisibility(document.getElementById('stock-type').value);
-                        document.getElementById('configSidebar').style.display = document.getElementById('stock-type').value ? '' : 'none';
+                        stockAttrGrid.style.display = '';
+                        document.getElementById('configSidebar').style.display = '';
                     } else if (this.value === 'weld') {
                         layout.style.display        = '';
                         stockCard.style.display     = '';
                         weldCard.style.display      = '';
                         weldRows.forEach(function (r) { r.style.display = ''; });
-                        stockTypeField.style.display = 'none';
-                        document.getElementById('stock-type').value = '';
-                        stockAttrGrid.style.display  = '';
-                        // Weld always shows all stock fields and stock labels
-                        document.querySelectorAll('.kd-only-field').forEach(function (f) { f.style.display = ''; });
-                        document.querySelectorAll('.kd-only-summary').forEach(function (r) { r.style.display = ''; });
-                        var lSku = document.getElementById('label_stock_sku');
-                        var lAcc = document.getElementById('label_stock_accounting_id');
-                        if (lSku) lSku.textContent = 'Stock Item SKU';
-                        if (lAcc) lAcc.textContent = 'Stock Item Accounting ID';
+                        stockAttrGrid.style.display = '';
                         document.getElementById('configSidebar').style.display = '';
                     } else {
                         layout.style.display = 'none';
@@ -636,11 +535,8 @@
                     document.getElementById('configLayout').style.display = 'none';
                     document.getElementById('weldCard').style.display = 'none';
                     document.querySelectorAll('.summary-row--weld').forEach(function (r) { r.style.display = 'none'; });
-
-                    document.getElementById('stock-type').value = '';
                     document.getElementById('configSidebar').style.display = 'none';
-                    applyStockTypeVisibility('');
-
+                    document.getElementById('stockAttrGrid').style.display = 'none';
                     clearAttributes();
                     updatePreview();
                 });
