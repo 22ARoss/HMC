@@ -17,3 +17,17 @@ export async function getSession() {
     const { data: { session } } = await supabaseClient.auth.getSession();
     return session;
 }
+
+export async function requestPasswordReset(email) {
+    const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: new URL('resetPassword.html', window.location.href).href,
+    });
+    return { data, error };
+}
+
+export async function updatePassword(newPassword) {
+    const { data, error } = await supabaseClient.auth.updateUser({
+        password: newPassword,
+    });
+    return { data, error };
+}

@@ -168,6 +168,34 @@ body {
 
 .sign-in-btn:hover { background: #162d57; }
 
+/* ── Reset password ── */
+.reset-text {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #7a90b0;
+}
+
+.reset_pwd_btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    background: #fff;
+    color: #1e3a6e;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.reset_pwd_btn:hover {
+    border-color: #1e3a6e;
+    background: #f5f8fc;
+}
+
 /* ── Responsive ───────────────────────────────────── */
 @media (max-width: 768px) {
     body {
@@ -230,5 +258,10 @@ body {
     .sign-in-btn {
         padding: 15px;
         font-size: 16px;
+    }
+
+    .reset_pwd_btn {
+        padding: 14px;
+        font-size: 15px;
     }
 }
